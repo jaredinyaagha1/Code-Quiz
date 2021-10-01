@@ -6,7 +6,7 @@ startbtn.addEventListener("click", function () {
     firstScreen.classList.add("hide")
     // nextbtn.classList.remove("hide")
     // function theGame()
-    console.log(firstScreen.classList)
+    theGame();
 })
 
 const questions = [
@@ -37,6 +37,6 @@ const questions = [
     }
     ]
 
-    var theGame = function () {
-
+var theGame = function () {
+        
     }
