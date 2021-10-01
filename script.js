@@ -1,9 +1,12 @@
 
 let startbtn = document.getElementById("start-button");
+let firstScreen = document.querySelector(".firstScreen")
 // let nextbtn = document.getElementById("next-button");
 startbtn.addEventListener("click", function () {
-    startbtn.classList.add("hide")
-    nextbtn.classList.remove("hide")
+    firstScreen.classList.add("hide")
+    // nextbtn.classList.remove("hide")
+    // function theGame()
+    console.log(firstScreen.classList)
 })
 
 const questions = [
@@ -33,3 +36,7 @@ const questions = [
         answer:"4. console.log"
     }
     ]
+
+    var theGame = function () {
+
+    }
