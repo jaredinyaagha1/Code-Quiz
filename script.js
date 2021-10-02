@@ -1,11 +1,11 @@
 
 let startbtn = document.getElementById("start-button");
-let firstScreen = document.querySelector(".firstScreen")
+let firstScreen = document.querySelector(".firstScreen");
+let timerCount = document.querySelector(".timer-count");
 // let nextbtn = document.getElementById("next-button");
 startbtn.addEventListener("click", function () {
     firstScreen.classList.add("hide")
     // nextbtn.classList.remove("hide")
-    // function theGame()
     theGame();
 })
 
