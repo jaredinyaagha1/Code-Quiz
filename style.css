@@ -1,3 +1,28 @@
 .hide {
     display: none;
 }
+
+body {
+    font-family: sans-serif, Arial, Helvetica;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.timer-text {
+    display: flex;
+
+}
+
+.firstScreen {
+    display:flex;
+    flex-flow: column;
+    align-items: center;
+    
+}
+
+button {
+    background-color: purple;
+    color: white;
+}

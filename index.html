@@ -16,12 +16,9 @@
             </h3>
         </a>
         <div class="timer">
-            <div class="timer-text">
-                <h3>
+                <h3 class="timer-text">
                     Time: <div class="timer-count">60</div>s
                 </h3>
-
-            </div>
         </div>
 
 
@@ -41,14 +38,25 @@
 
 
 
-        <section class="questionScreen, hide">
-            <h1 class="questioni[i]"></h1>
-            <button class="answersi[0]"></button>
-            <button class="answersi[1]"></button>
-            <button class="answersi[2]"></button>
-            <button class="answersi[3]"></button>
+        <section id="questionScreen" class="questionScreen, hide">
+            <h1 id="questions" class="questions">tyjtd</h1>
+            <button class="answers1">tdyjd</button>
+            <button class="answers2">tdjtd</button>
+            <button class="answers3">dtjtd</button>
+            <button class="answers4">tdjdt</button>
         </section>
 
+        <section class="correctWrong, hide">
+            <h4 class="Correct">
+                _______________________________________________
+                Correct!
+            </h4>
+            <h4 class="Wrong">
+                _______________________________________________
+                Wrong!
+            </h4>
+        </section>
+        
         <section class="doneScreen, hide">
             <h1>All done!</h1>
             <h3>Your final score is<div class="timer-count">60</div>
@@ -60,19 +68,16 @@
             <button id="submit-button" class="submit-button">SUBMIT CHALLENGE</button>
         </section>
 
-        <section class="CoW, hide">
-            <h4 class="Correct">
-                _______________________________________________
-                Correct!
-            </h4>
-            <h4 class="Wrong">
-                _______________________________________________
-                Wrong!
-            </h4>
-        </section>
+        
 
-        <section class="highScorePage, hide">
+        <section class="highScoreScreen, hide">
             <h1>High Scores</h1>
+
+            <ul class="highScoreList" id="highScoreList">
+                <li>
+                    
+                </li>
+            </ul>
         </section>
     </main>
     <script src="script.js"></script>
