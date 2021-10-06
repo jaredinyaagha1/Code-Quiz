@@ -29,12 +29,28 @@ $(document).ready(function() {
         let count = 0;
         if (count < allQuestions.length)  {
             $("#questions").append(allQuestions[count].question)
-            for (let i = 0; i < allQuestions.length; i++) {
-                $("button").each(function() {
-                   $(this).append(allQuestions[count].choices[i]); 
-                });
+            let theAnswers = $(".answers").toArray();
+            for (let i = 0; i < 4; i++) {
+                theAnswers[i].append(allQuestions[count].choices[i]); 
              }
+
+             $('#answers1, #answers2').click(function () {
+   if (this.id == 'answers1') {
+      alert('Submit 1 clicked');
+   }
+   else if (this.id == 'answers2') {
+      alert('Submit 2 clicked');
+   }
+   else if (this.id == 'answers3') {
+    alert('Submit 3 clicked');
+ }
+ else {
+    alert('Submit 4 clicked');
+ }
+});
         }
+
+    
     }
 
 
