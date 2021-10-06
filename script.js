@@ -34,9 +34,17 @@ $(document).ready(function () {
                 theAnswers[i].append(allQuestions[count].choices[i]);
             }
 
-            $('#answers1, #answers2').click(function () {
+            $('#answers1, #answers2, #answers3, #answers4').click(function () {
                 if (this.id == 'answers1') {
-                    alert('Submit 1 clicked');
+                    count++;
+                    if (count < allQuestions.length) {
+                        $("#questions").empty(allQuestions[count-1].question)
+                        $("#questions").append(allQuestions[count].question)
+                        let theAnswers = $(".answers").toArray();
+                        for (let i = 0; i < 4; i++) {
+                            theAnswers[i].empty(allQuestions[count].choices[i]);
+                        }
+                    }
                 } else if (this.id == 'answers2') {
                     alert('Submit 2 clicked');
                 } else if (this.id == 'answers3') {
