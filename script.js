@@ -20,13 +20,15 @@ $(document).ready(function () {
         theGame();
     })
 
+    let count = 0;
+
     function theGame() {
         // for (let i = 0; i < allQuestions.length; i++) {
         //      console.log(allQuestions[i].question)
         //     //  $("#questions").append(allQuestions.question[i])
 
         // }
-        let count = 0;
+        
         if (count < allQuestions.length) {
             $("#questions").append(allQuestions[count].question)
             let theAnswers = $(".answers").toArray();
@@ -36,15 +38,9 @@ $(document).ready(function () {
 
             $('#answers1, #answers2, #answers3, #answers4').click(function () {
                 if (this.id == 'answers1') {
+                    $("#questions").empty(allQuestions[count].question)
                     count++;
-                    if (count < allQuestions.length) {
-                        $("#questions").empty(allQuestions[count-1].question)
-                        $("#questions").append(allQuestions[count].question)
-                        let theAnswers = $(".answers").toArray();
-                        for (let i = 0; i < 4; i++) {
-                            theAnswers[i].empty(allQuestions[count].choices[i]);
-                        }
-                    }
+                    theGame();
                 } else if (this.id == 'answers2') {
                     alert('Submit 2 clicked');
                 } else if (this.id == 'answers3') {
