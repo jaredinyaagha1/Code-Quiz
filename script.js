@@ -1,84 +1,74 @@
-// let timerCount = document.querySelector(".timer-count");
-// let submitbtn = document.getElementById("submit-button");
-// 
-// let highscoreScreen = document.querySelector(".highscoreScreen")
-// let doneScreen = document.querySelector(".doneScreen");
-let h1 = document.getElementsByClassName("questions")
-let startbtn = document.getElementById("start-button");
-let firstScreen = document.getElementById("firstScreen");
-let firstScreen1 = document.querySelector(".hide");
-let questionScreen = document.getElementById("questionScreen");
+$(document).ready(function() {
 
-startbtn.addEventListener("click", function () {
-    firstScreen.classList.add("hide");
-    firstScreen.classList.toggle("firstScreen");
-    theGame();
-})
 
-var theGame = function () {
-        // for (let i = 0; i >= 4; i++) 
-        // s
-             h1.innerHTML = "eggs on toast eggs on toast"
-             questionScreen.classList.toggle("hide");
+// let startbtn = document.getElementById("start-button");
+// let firstScreen = document.getElementById("firstScreen");
+// let questionScreen = document.getElementById("questionScreen");
+// let h1 = document.getElementById("questions");
+// let a1 = document.getElementById("answers1");
+// let a2 = document.getElementById("answers2");
+// let a3 = document.getElementById("answers3");
+// let a4 = document.getElementById("answers4");
 
-             console.log(h1)
-             
-            //  questionScreen.h1.innerText = questions[0]
-        // }  
+
+   
+    // click event handler using the .on() method
+    $("#start-button").on("click", function (){
+        $("#firstScreen").hide();
+        $("#questionScreen").show();
+        
+        theGame();  
+    })
+    
+    function theGame () {
+        // for (let i = 0; i < allQuestions.length; i++) {
+        //      console.log(allQuestions[i].question)
+        //     //  $("#questions").append(allQuestions.question[i])
+        
+        // }
+        let count = 0;
+        if (count < allQuestions.length)  {
+            $("#questions").append(allQuestions[count].question)
+            for (let i = 0; i < allQuestions.length; i++) {
+                $("button").each(function() {
+                   $(this).append(allQuestions[count].choices[i]); 
+                });
+             }
+        }
     }
 
-// submitbtn.addEventListener("click", function () {
-    
-// })
 
-var theScores = function () {
 
-}
+const allQuestions = [
+    {
+        question: "Commonly used data types DO NOT include: ",
+        choices: ["1. strings", "2. booleans", "3. alerts", "4. numbers"],
+        answer: "3. alerts"
+    },
 
-const questions = [
-        "Commonly used data types DO NOT include: ",
-        "The condition in an if / else statment is enclosed within _______. ",
-        "Arrays in Javascript can be used to store ________.",
-        "String values must be enclosed within _____ when being assigned to variables.",
-        "A very useful tool used during development and debugging for printing to the debugger is: "
-    ]
+    {
+        question: "The condition in an if / else statment is enclosed within _______. ",
+        choices: ["1. quotes", "2. curly brackets", "3. parenthesis", "4. square brackets"],
+        answer: ""
+    },
 
-const answers1 = [
-        "1. strings",
-        "1. quotes",
-        "1. numbers and strings",
-        "1. commas",
-        "1. JavaScript"
-]
+    {
+        question: "Arrays in Javascript can be used to store ________.",
+        choices: ["1. numbers and strings", "2. booleans", "3. other arrays", "4. all of the above"],
+        answer: "4. all of the above"
+    },
 
-const answers2 = [
-        "2. booleans",
-        "2. curly brackets",
-        "2. booleans",
-        "2. curly brackets",
-        "2. terminal / bash"
-]
+    {
+        question: "String values must be enclosed within _____ when being assigned to variables.",
+        choices: [ "1. commas", "2. curly brackets", "3. quotes", "4. parenthesis"],
+        answer: "3. quotes"
+    },
 
-const answers3 = [
-        "3. alerts",
-        "3. parenthesis",
-        "3. other arrays",
-        "3. quotes",
-        "3. for loops"
-]
+    {
+        question: "A very useful tool used during development and debugging for printing to the debugger is: ",
+        choices: [ "1. JavaScript", "2. terminal / bash", "3. for loops", "4. console.log"],
+        answer: "4. console.log"
+    }   
+];
 
-const answers4 = [
-        "4. numbers",
-        "4. square brackets",
-        "4. all of the above",
-        "4. parenthesis",
-        "4. console.log"
-]
-
-const correctAnswer = [
-        "3. alerts",
-        "3. parenthesis",
-        "4. all of the above",
-        "3. quotes",
-        "4. console.log"
-]
+})

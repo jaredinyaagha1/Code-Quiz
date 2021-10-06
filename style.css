@@ -26,3 +26,9 @@ button {
     background-color: purple;
     color: white;
 }
+
+.buttons {
+    display:flex;
+    flex-flow: column wrap;
+    align-items: flex-start;
+}

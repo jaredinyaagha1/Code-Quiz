@@ -39,23 +39,26 @@
 
 
         <section id="questionScreen" class="questionScreen, hide">
-            <h1 id="questions" class="questions">tyjtd</h1>
-            <button class="answers1">tdyjd</button>
-            <button class="answers2">tdjtd</button>
-            <button class="answers3">dtjtd</button>
-            <button class="answers4">tdjdt</button>
+            <h1 id="questions" class="questions"></h1>
+            <ul class= "buttons">
+                <li><button id= "answers1" class="answers1"></button></li>
+                <li><button id= "answers2" class="answers2"></button></li>
+                <li><button id= "answers3" class="answers3"></button></li>
+                <li><button id= "answers4" class="answers4"></button></li>
+            </ul>
+            
         </section>
 
-        <section class="correctWrong, hide">
-            <h4 class="Correct">
+        <!-- <section id="correctWrong" class="correctWrong, hide"> -->
+            <h4 id="correct" class="Correct, hide">
                 _______________________________________________
                 Correct!
             </h4>
-            <h4 class="Wrong">
+            <h4  id="wrong" class="Wrong, hide">
                 _______________________________________________
                 Wrong!
             </h4>
-        </section>
+        <!-- </section> -->
         
         <section class="doneScreen, hide">
             <h1>All done!</h1>
@@ -80,6 +83,9 @@
             </ul>
         </section>
     </main>
+    <!-- <script type="text/javascript" src="JSON.json"></script> -->
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 
