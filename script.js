@@ -1,35 +1,21 @@
 $(document).ready(function () {
 
-
-    // let startbtn = document.getElementById("start-button");
-    // let firstScreen = document.getElementById("firstScreen");
-    // let questionScreen = document.getElementById("questionScreen");
-    // let h1 = document.getElementById("questions");
-    // let a1 = document.getElementById("answers1");
-    // let a2 = document.getElementById("answers2");
-    // let a3 = document.getElementById("answers3");
-    // let a4 = document.getElementById("answers4");
-
-
-
     // click event handler using the .on() method
     $("#start-button").on("click", function () {
         $("#firstScreen").hide();
         $("#questionScreen").show();
-
+        
         theGame();
+        theTimer();
     })
 
     let count = 0;
-
+    let score =60;
+    let itsWrong = 0;
     function theGame() {
-        // for (let i = 0; i < allQuestions.length; i++) {
-        //      console.log(allQuestions[i].question)
-        //     //  $("#questions").append(allQuestions.question[i])
 
-        // }
-        
-        if (count < allQuestions.length) {
+        if (count <= allQuestions.length) {
+            $(".answers, #questions").empty()
             $("#questions").append(allQuestions[count].question)
             let theAnswers = $(".answers").toArray();
             for (let i = 0; i < 4; i++) {
@@ -37,23 +23,61 @@ $(document).ready(function () {
             }
 
             $('#answers1, #answers2, #answers3, #answers4').click(function () {
-                if (this.id == 'answers1') {
-                    $("#questions").empty(allQuestions[count].question)
+                    $(this).data('clicked', true);
+                    // Stuck here vvvv in trying to see if the string in the button matches the string in the object 
+                if ($(this).data('clicked') === allQuestions[count].answer) {
                     count++;
-                    theGame();
-                } else if (this.id == 'answers2') {
-                    alert('Submit 2 clicked');
-                } else if (this.id == 'answers3') {
-                    alert('Submit 3 clicked');
-                } else {
-                    alert('Submit 4 clicked');
+                    $(".answers, #questions").empty()
+                    $("#questions").append(allQuestions[count].question)
+                    for (let i = 0; i < 4; i++) {
+                        theAnswers[i].append(allQuestions[count].choices[i]);
+                    } alert("yes")
+                }
+
+                else {
+                    count++;
+                    $(".answers, #questions").empty()
+                    $("#questions").append(allQuestions[count].question)
+                    for (let i = 0; i < 4; i++) {
+                        theAnswers[i].append(allQuestions[count].choices[i]);
+                    }
+                    itsWrong = 1;
+                    //  alert("no")
                 }
             });
         }
 
+        else {
+            $(".answers, #questions").empty()
+            $("#questionScreen").hide();
+        $("#doneScreen").show();
+        }
+
+
 
     }
 
+    function theTimer(score) {
+
+        // Function to update counters on all elements with class counter
+        var doUpdate = function () {
+            $('.timer-count').each(function () {
+                score = parseInt($(this).html());
+                if (score !== 0) {
+                    $(this).html(score - 1);
+
+                    if (itsWrong = 1) {
+                        score = 0;
+                    }
+                }
+
+                
+            });
+        };
+
+        // Schedule the update to happen once every second
+        setInterval(doUpdate, 1000);
+    }
 
 
     const allQuestions = [{
@@ -65,7 +89,7 @@ $(document).ready(function () {
         {
             question: "The condition in an if / else statment is enclosed within _______. ",
             choices: ["1. quotes", "2. curly brackets", "3. parenthesis", "4. square brackets"],
-            answer: ""
+            answer: "3. parenthesis"
         },
 
         {
