@@ -12,38 +12,46 @@ $(document).ready(function () {
     let count = 0;
     let score =60;
     let itsWrong = 0;
+    
     function theGame() {
 
-        if (count <= allQuestions.length) {
+        if (count < allQuestions.length) {
+            count++;
+            console.log(count, allQuestions.length)
             $(".answers, #questions").empty()
-            $("#questions").append(allQuestions[count].question)
             let theAnswers = $(".answers").toArray();
+            $("#questions").append(allQuestions[count].question)
+            
             for (let i = 0; i < 4; i++) {
                 theAnswers[i].append(allQuestions[count].choices[i]);
             }
 
-            $('#answers1, #answers2, #answers3, #answers4').click(function () {
+            $('#answers1, #answers2, #answers3, #answers4').on("click", function (event) {
                     $(this).data('clicked', true);
+                    var eventDetails = event.target.textContent;
+                    
                     // Stuck here vvvv in trying to see if the string in the button matches the string in the object 
-                if ($(this).data('clicked') === allQuestions[count].answer) {
-                    count++;
-                    $(".answers, #questions").empty()
-                    $("#questions").append(allQuestions[count].question)
-                    for (let i = 0; i < 4; i++) {
-                        theAnswers[i].append(allQuestions[count].choices[i]);
-                    } alert("yes")
+                if (eventDetails === allQuestions[count].answer) {
+                    
+                        $(".Correct").removeClass("hide");
+                        console.log("dwingo")
+    
+                    // count++;
+                    theGame();
+
                 }
 
                 else {
-                    count++;
-                    $(".answers, #questions").empty()
-                    $("#questions").append(allQuestions[count].question)
-                    for (let i = 0; i < 4; i++) {
-                        theAnswers[i].append(allQuestions[count].choices[i]);
-                    }
+                    event.stopPropagation();
+                    console.log("(else) event details: ", eventDetails);
+                    console.log("(else) answer: ", allQuestions[count].answer)
+                    // count++;
+                    theGame();
+
                     itsWrong = 1;
-                    //  alert("no")
+                    // alert(itsWrong)
                 }
+            
             });
         }
 
@@ -57,7 +65,7 @@ $(document).ready(function () {
 
     }
 
-    function theTimer(score) {
+    function theTimer(score, itsWrong) {
 
         // Function to update counters on all elements with class counter
         var doUpdate = function () {
