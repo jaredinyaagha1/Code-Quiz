@@ -9,37 +9,35 @@
 </head>
 
 <body>
-    <nav>
-        <a href="">
-            <h3 class="highScorePage">
-                View Highscores
-            </h3>
-        </a>
+    <nav class="navbar">
+        <ul class="navItems">
+            <li class="homePage"><a href="">HOME</a></li>
+            <li class="highscorePage"><a href="">VIEW HIGHSCORES</a></li>
+        </ul>
         <div class="timer">
                 <h3 class="timer-text">
-                    Time: <div class="timer-count">60</div>s
+                    Time: <div class="timer-count"></div>s
                 </h3>
         </div>
 
-
     </nav>
 
-    <main>
-        <section id="firstScreen" class="firstScreen">
+    <main class="quiz-content-section">
+        <section class="firstScreen">
             <h1 class="large-font">WORLD'S HARDEST JAVASCRIPT CHALLENGE</h1>
 
             <h3>
                 Try to answer the following code-related questions within the time limit. Keep in mind that incorrect
                 answers will penalize your score time by ten seconds!
             </h3>
-            <button id="start-button" class="start-button">START CHALLENGE</button>
+            <button class="start-button">START CHALLENGE</button>
             <!-- <button id="next-button" class="hide" >NEXT QUESTION</button>      -->
         </section>
 
 
 
-        <section id="questionScreen" class="questionScreen, hide">
-            <h1 id="questions" class="questions"></h1>
+        <section class="questionScreen, hide">
+            <h1 class="questions"></h1>
             <ul class= "buttons">
                 <li><button id= "answers1" class="answers"></button></li>
                 <li><button id= "answers2" class="answers"></button></li>
@@ -49,31 +47,32 @@
             
         </section>
 
-        <!-- <section id="correctWrong" class="correctWrong, hide"> -->
-            <h4 id="correct" class="Correct, hide">
+        <!-- <section id="correctWrong" class="correctWrong, hide">
+            <h4 class="Correct ">
                 _______________________________________________
                 Correct!
             </h4>
-            <h4  id="wrong" class="Wrong, hide">
+            <h4 class="Wrong hidden">
                 _______________________________________________
                 Wrong!
             </h4>
-        <!-- </section> -->
+        </section> -->
         
-        <section id="doneScreen" class="doneScreen, hide">
+        <section class="doneScreen">
             <h1>All done!</h1>
-            <h3>Your final score is<div class="timer-count">60</div>
+            <h3>Your final score is<div class="timer-count"></div>
             </h3>
-            <form>
-                <label for="finalscore">Enter Initials: </label>
-                <input type="text" id="finalscore" name="finalscore">
+            <form id="finalScore" class="hidden" onsubmit="inputFinalScore(event)">
+                <label for="finalscore">Enter Initials: <input type="text" id="finalscore" 
+                    class="" name="finalscore" placeholder="Insert Name Here"></label>
+                <input class="form-submit" type="submit" />
             </form>
             <button id="submit-button" class="submit-button">SUBMIT CHALLENGE</button>
         </section>
 
         
 
-        <section class="highScoreScreen, hide">
+        <!-- <section class="highScoreScreen, hide">
             <h1>High Scores</h1>
 
             <ul class="highScoreList" id="highScoreList">
@@ -81,11 +80,10 @@
                     
                 </li>
             </ul>
-        </section>
+        </section> -->
     </main>
-    <!-- <script type="text/javascript" src="JSON.json"></script> -->
+
     
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="script1.js"></script>
 </body>
 
