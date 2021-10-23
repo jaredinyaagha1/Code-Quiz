@@ -47,12 +47,16 @@ var quizQs = [{
 
 var timer;
 var timerVal;
-var questionCounter = 0;
+var questionCount = 0;
 var score;
 var resultTimer;
 
 var timerEl = document.querySelector(".timer-count");
 var startButtonEl = document.querySelector(".start-button");
+var buttonsList = document.querySelector(".buttons");
+var questList = document.querySelector(".questions");
+var startScreen = document.querySelector(".firstScreen");
+var questScreen = document.querySelector(".questionScreen");
 
 startButtonEl.addEventListener("click", function (event) {
     console.log("game start, game start!");
@@ -62,29 +66,67 @@ startButtonEl.addEventListener("click", function (event) {
     score = 0;
     count = 0;
     timerEl.textContent = timerVal;
-
+    startScreen.classList.remove("firstScreen");
+    startScreen.classList.add("hidden");
+    questScreen.classList.remove("hidden");
     timerEl.classList.remove('hidden');
+    quizQs = shuffleOrder(quizQs);
+    nextquestion();
+    timer = setInterval(function () {
+        timerVal--;
+        timerEl.textContent = timerVal;
+        if (timerVal === 0) {
+            clearInterval(timer);
+            showQuizEnd(true);
+        }
+    }, 1000)
     
 })
 
-answers.addEventListener("click", function (event) {
+buttonsList.addEventListener("click", function (event) {
     event.stopPropagation();
     event.preventDefault();
+    var userChoice = event.target;
+    if (userChoice.matches(".answer-button")) {
+        AnswerChecker(userChoice.textContent);
+    }
 });
 
-function nextquestion () {
-    var question = quizQs[questionCounter];
-    quizQs.innerHTML = question.innerHTML;
-    listAnswers(question.answers)
-}
-
-function listAnswers () {
-
-}
-
-function arrayShuffle (array) {
-    var count = array.length;
+function shuffleOrder (order) {
+    var count = order.length;
     while (count > 0) {
-        
+        var index = Math.floor(count * Math.random());
+        count--;
+        var temp = order[count];
+        // console.log(order[count], "line 92")
+        order[count] = order[index];
+        // console.log(order[count], order[index], "line 94")
+        order[index] = temp;
+        // console.log(order[count], order[index],  temp,  "line 96")
     }
+    return order
 }
+
+function nextquestion () {
+    var currentQuest = quizQs[questionCount];
+    questList.innerHTML = currentQuest.question;
+    listAnswers(currentQuest.answers)
+}
+
+function listAnswers (answers) {
+    answers = shuffleOrder(answers);
+    var answerlist = document.createElement("ol");
+    Object.keys(answers).forEach((key, index) => {
+        var answId = 'answ' + index,
+        answItem = document.createElement("li");
+        answItem.id = answId;
+        answItem.className = "answer-item";
+        var answButton = document.createElement("button");
+        answButton.className = "answer-button";
+       answButton.textContent = key;
+       answItem.appendChild(answButton);
+       answerlist.appendChild(answItem);
+   });
+   buttonsList.innerHTML = answerlist.innerHTML;
+}
+

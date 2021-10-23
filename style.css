@@ -1,17 +1,18 @@
-.hide {
+.hidden  {
     display: none;
 }
 
 body {
     font-family: sans-serif, Arial, Helvetica;
 }
-nav {
+.navItems {
     display: flex;
     justify-content: space-between;
 }
 
 .timer-text {
     display: flex;
+    align-items: flex-end;
 
 }
 
