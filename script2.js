@@ -1,4 +1,4 @@
-var quizQs = [{
+var qQuestions = [{
     "question": "Commonly used data types DO NOT include: ",
         "answers": {
                 "1. strings": false,
@@ -47,7 +47,7 @@ var quizQs = [{
 
 var timer;
 var timerVal;
-var questionCount = 0;
+var qCount = 0;
 var score;
 var resultTimer;
 
@@ -70,7 +70,7 @@ startButtonEl.addEventListener("click", function (event) {
     startScreen.classList.add("hidden");
     questScreen.classList.remove("hidden");
     timerEl.classList.remove('hidden');
-    quizQs = shuffleOrder(quizQs);
+    qQuestions = shuffleOrder(qQuestions);
     nextquestion();
     timer = setInterval(function () {
         timerVal--;
@@ -108,7 +108,7 @@ function shuffleOrder (order) {
 }
 
 function nextquestion () {
-    var currentQuest = quizQs[questionCount];
+    var currentQuest = qQuestions[qCount];
     questList.innerHTML = currentQuest.question;
     listAnswers(currentQuest.answers)
 }
@@ -130,3 +130,14 @@ function listAnswers (answers) {
    buttonsList.innerHTML = answerlist.innerHTML;
 }
 
+function AnswerChecker (choicetxt) {
+    var theAnswers = qQuestions[qCount].answers;
+    var correct = theAnswers[choicetxt];
+    if (correct) {
+        
+    }
+
+    else {
+        
+    }
+}
