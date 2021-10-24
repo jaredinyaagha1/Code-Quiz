@@ -1,5 +1,6 @@
-var qQuestions = [{
-    "question": "Commonly used data types DO NOT include: ",
+var qQuestions = [
+{
+        "question": "Commonly used data types DO NOT include: ",
         "answers": {
                 "1. strings": false,
                 "2. booleans": false,
@@ -52,11 +53,16 @@ var score;
 var resultTimer;
 
 var timerEl = document.querySelector(".timer-count");
+var timerContent = document.querySelector(".timer");
 var startButtonEl = document.querySelector(".start-button");
 var buttonsList = document.querySelector(".buttons");
 var questList = document.querySelector(".questions");
 var startScreen = document.querySelector(".firstScreen");
 var questScreen = document.querySelector(".questionScreen");
+var doneScreen = document.querySelector(".doneScreen");
+var blurbScreen = document.querySelector(".correctWrong");
+var correctBlurb = document.querySelector(".Correct");
+var wrongBlurb = document.querySelector(".Wrong");
 
 startButtonEl.addEventListener("click", function (event) {
     console.log("game start, game start!");
@@ -69,13 +75,13 @@ startButtonEl.addEventListener("click", function (event) {
     startScreen.classList.remove("firstScreen");
     startScreen.classList.add("hidden");
     questScreen.classList.remove("hidden");
-    timerEl.classList.remove('hidden');
+
     qQuestions = shuffleOrder(qQuestions);
     nextquestion();
     timer = setInterval(function () {
         timerVal--;
         timerEl.textContent = timerVal;
-        if (timerVal === 0) {
+        if (timerVal <= 0) {
             clearInterval(timer);
             showQuizEnd(true);
         }
@@ -117,27 +123,55 @@ function listAnswers (answers) {
     answers = shuffleOrder(answers);
     var answerlist = document.createElement("ol");
     Object.keys(answers).forEach((key, index) => {
-        var answId = 'answ' + index,
-        answItem = document.createElement("li");
-        answItem.id = answId;
-        answItem.className = "answer-item";
-        var answButton = document.createElement("button");
-        answButton.className = "answer-button";
-       answButton.textContent = key;
-       answItem.appendChild(answButton);
-       answerlist.appendChild(answItem);
+        var answId = 'answer' + index,
+        answerEl = document.createElement("li");
+        answerEl.id = answId;
+        answerEl.className = "answer-class";
+        var answerBtn = document.createElement("button");
+        answerBtn.className = "answer-button";
+        answerBtn.textContent = key;
+       answerEl.appendChild(answerBtn);
+       answerlist.appendChild(answerEl);
    });
    buttonsList.innerHTML = answerlist.innerHTML;
 }
 
-function AnswerChecker (choicetxt) {
-    var theAnswers = qQuestions[qCount].answers;
-    var correct = theAnswers[choicetxt];
-    if (correct) {
-        
+function AnswerChecker (playerAnswer) {
+    var possibleAnswers = qQuestions[qCount].answers;
+    var correctAns = possibleAnswers[playerAnswer];
+    if (correctAns) {
+        blurbScreen.classList.remove("hidden");
+        wrongBlurb.classList.add("hidden");
+        correctBlurb.classList.remove("hidden");
+        console.log(correctAns)
+        score += 10;
     }
-
     else {
-        
+        blurbScreen.classList.remove("hidden");
+        correctBlurb.classList.add("hidden");
+        wrongBlurb.classList.remove("hidden");
+        console.log("149, wrong")
+        timerVal -= 10;
     }
+    clearInterval(resultTimer);
+    var secPassed = 0;
+    resultTimer = setInterval(function () {
+        if (secPassed === 1) {
+            blurbScreen.classList.add("hidden");            
+            clearInterval(resultTimer);
+        }
+        secPassed++;
+    }, 1000)
+    qCount++;
+    if (qCount === qQuestions.length) {
+        showQuizEnd(true);
+    } else {
+        nextquestion ();
+    }
+}
+
+function showQuizEnd () {
+    questScreen.classList.add("hidden");
+    timerContent.classList.add('hidden');
+    doneScreen.classList.remove('hidden');
 }
