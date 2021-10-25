@@ -104,20 +104,21 @@ buttonsList.addEventListener("click", function (event) {
     }
 });
 
-highScoreBtn.addEventListener("click", function() {
-    var highScores = JSON.parse(localStorage.getItem("HighScores"));
+function showScores () {
     startScreen.classList.remove("firstScreen");
     startScreen.classList.add("hidden");
     timerContent.classList.add("hidden");
+    highScoScreen.classList.remove("hidden");
+    hsTitle.textContent = "TOP 4 GREATEST CHALLENGERS IN HISTORY"
     var onlyOnce = false;
     if (onlyOnce = false) {
-        showFinalScore(highScores);
+        proccessFinalScore();
         onlyOnce = true;    
     }
 
     // else if (onlyOnce) {}
     
-});
+}
 
 function inputFinalScore(event) {
     event.stopPropagation();
@@ -156,8 +157,8 @@ function showFinalScore(highScoresArray) {
         recordEl.textContent = scoreRecord.name + "  " + scoreRecord.score;
         scorelist.appendChild(recordEl);
     });
-    highScoScreen.append(scorelist)
-    hsTitle.textContent = "TOP 4 GREATEST CHALLENGERS IN HISTORY"
+    highScoScreen.append(scorelist);
+    hsTitle.textContent = "TOP 4 GREATEST CHALLENGERS IN HISTORY";
     questScreen.classList.add("hidden");
     highScoScreen.classList.remove("hidden");
     doneScreen.classList.add('hidden');
@@ -208,7 +209,7 @@ function AnswerChecker (playerAnswer) {
         wrongBlurb.classList.add("hidden");
         correctBlurb.classList.remove("hidden");
         console.log(correctAns)
-        score += 10;
+        score = timerVal;
     }
     else {
         blurbScreen.classList.remove("hidden");
