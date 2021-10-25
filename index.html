@@ -21,7 +21,6 @@
         </div>
 
     </nav>
-
     <main class="quiz-content-section">
         <section class="firstScreen">
             <h1 class="large-font">WORLD'S HARDEST JAVASCRIPT CHALLENGE</h1>
@@ -31,22 +30,17 @@
                 answers will penalize your score time by ten seconds!
             </h3>
             <button class="start-button">START CHALLENGE</button>
-            <!-- <button id="next-button" class="hide" >NEXT QUESTION</button>      -->
         </section>
-
-
-
         <section class="questionScreen hidden">
             <h1 class="questions"></h1>
             <ul class="buttons">
-                <li><button id="answers1" class="answers"></button></li>
-                <li><button id="answers2" class="answers"></button></li>
-                <li><button id="answers3" class="answers"></button></li>
-                <li><button id="answers4" class="answers"></button></li>
+                <li><button class="answers"></button></li>
+                <li><button class="answers"></button></li>
+                <li><button class="answers"></button></li>
+                <li><button class="answers"></button></li>
             </ul>
 
         </section>
-
         <section class="correctWrong hidden">
             <h4 class="Correct hidden">
                 _______________________________________________
@@ -59,30 +53,22 @@
                 Wrong!
             </h4>
         </section>
-
         <section class="doneScreen hidden">
             <h1>All done!</h1>
-            <h3>Your final score is<div class="timerscore"></div>
+            <h3>Your final score is: <div class="timerscore"></div>
             </h3>
             <form id="submit-score" class="finalScore" onsubmit="inputFinalScore(event)">
                 <label>SUBMIT CHALLENGER INITIALS: <input id="name-field" type="text" class="name-input"
                         name="finalScoreName" placeholder="Insert Name Here"/></label>
                 <input class="form-submit" type="submit" />
             </form>
-            
+       
         </section>
-
         <section class="highScoreScreen hidden">
-            <h1>TOP 4 GREATEST CHALLENGERS IN HISTORY</h1>
+            <h1 class="hsTitle"></h1>
 
         </section>
-
-
-
     </main>
-
-
-
     <script src="script2.js"></script>
 </body>
 
