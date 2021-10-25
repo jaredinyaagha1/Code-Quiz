@@ -67,6 +67,7 @@ var wrongBlurb = document.querySelector(".Wrong");
 var highScoreBtn = document.querySelector(".highscorePage");
 var highScoScreen = document.querySelector(".highScoreScreen");
 var scoreForm = document.querySelector("#submit-score");
+var hsTitle = document.querySelector(".hsTitle");
 
 startButtonEl.addEventListener("click", function (event) {
     console.log("game start, game start!");
@@ -88,13 +89,10 @@ startButtonEl.addEventListener("click", function (event) {
         if (timerVal <= 0 || qCount === qQuestions.length) {
             clearInterval(timer);
             clearTimeout(timer);
-            showQuizEnd(true);
-            
-            // return score;
+            showQuizEnd(true);            
         }
         
-    }, 1000)
-    
+    }, 1000)    
 })
 
 buttonsList.addEventListener("click", function (event) {
@@ -152,15 +150,11 @@ function showFinalScore(highScoresArray) {
         scorelist.appendChild(recordEl);
     });
     highScoScreen.append(scorelist)
-    questList.textContent = "TOP 4 GREATEST CHALLENGERS IN HISTORY"
+    hsTitle.textContent = "TOP 4 GREATEST CHALLENGERS IN HISTORY"
     questScreen.classList.add("hidden");
     highScoScreen.classList.remove("hidden");
-    // timerContent.classList.add('hidden');
     doneScreen.classList.add('hidden');
-    // displayedAnsw.classList.remove("hidden");
-    // scoreForm.classList.add('hidden');
-    // getStartedButton.classList.remove("hidden");
-    // getStartedButton.innerHTML = "Try Again!";
+
 }
 
 
@@ -170,11 +164,8 @@ function shuffleOrder (order) {
         var index = Math.floor(count * Math.random());
         count--;
         var temp = order[count];
-        // console.log(order[count], "line 92")
         order[count] = order[index];
-        // console.log(order[count], order[index], "line 94")
         order[index] = temp;
-        // console.log(order[count], order[index],  temp,  "line 96")
     }
     return order
 }
@@ -240,6 +231,6 @@ function showQuizEnd () {
     questScreen.classList.add("hidden");
     timerContent.classList.add('hidden');
     doneScreen.classList.remove('hidden');
-    score = timerVal;
-    timerScore.textContent = score;
+    // score = timerVal;
+    timerScore.textContent = + "  " + score;
 }
