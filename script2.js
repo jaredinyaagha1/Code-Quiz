@@ -86,7 +86,7 @@ startButtonEl.addEventListener("click", function (event) {
     timer = setInterval(function () {
         timerVal--;
         timerEl.textContent = timerVal;
-        if (timerVal <= 0 || qCount === qQuestions.length) {
+        if (timerVal <= 0 || qCount === qQuestions.length) {            
             clearInterval(timer);
             clearTimeout(timer);
             showQuizEnd(true);            
@@ -109,7 +109,14 @@ highScoreBtn.addEventListener("click", function() {
     startScreen.classList.remove("firstScreen");
     startScreen.classList.add("hidden");
     timerContent.classList.add("hidden");
-    showFinalScore(highScores);
+    var onlyOnce = false;
+    if (onlyOnce = false) {
+        showFinalScore(highScores);
+        onlyOnce = true;    
+    }
+
+    // else if (onlyOnce) {}
+    
 });
 
 function inputFinalScore(event) {
@@ -222,6 +229,7 @@ function AnswerChecker (playerAnswer) {
     qCount++;
     if (qCount === qQuestions.length) {
         showQuizEnd(true);
+        blurbScreen.classList.add("hidden");
     } else {
         nextquestion ();
     }
