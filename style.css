@@ -8,12 +8,14 @@ body {
 .navItems {
     display: flex;
     justify-content: space-between;
+    list-style-type: none;
 }
 
 .timer-text {
+    
     display: flex;
     align-items: flex-end;
-
+    float: right;
 }
 
 .firstScreen {
@@ -32,4 +34,20 @@ button {
     display:flex;
     flex-flow: column wrap;
     align-items: flex-start;
+}
+
+.highScoreScreen {
+    display:flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+h3 {
+    display: flex;
+    flex-flow: row;
+}
+
+a {
+    font-weight: bold;
+    
 }
