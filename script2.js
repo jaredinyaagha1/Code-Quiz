@@ -54,6 +54,7 @@ var resultTimer;
 
 var timerEl = document.querySelector(".timer-count");
 var timerContent = document.querySelector(".timer");
+var timerScore = document.querySelector(".timerscore");
 var startButtonEl = document.querySelector(".start-button");
 var buttonsList = document.querySelector(".buttons");
 var questList = document.querySelector(".questions");
@@ -63,6 +64,9 @@ var doneScreen = document.querySelector(".doneScreen");
 var blurbScreen = document.querySelector(".correctWrong");
 var correctBlurb = document.querySelector(".Correct");
 var wrongBlurb = document.querySelector(".Wrong");
+var highScoreBtn = document.querySelector(".highscorePage");
+var highScoScreen = document.querySelector(".highScoreScreen");
+var scoreForm = document.querySelector("#submit-score");
 
 startButtonEl.addEventListener("click", function (event) {
     console.log("game start, game start!");
@@ -81,10 +85,14 @@ startButtonEl.addEventListener("click", function (event) {
     timer = setInterval(function () {
         timerVal--;
         timerEl.textContent = timerVal;
-        if (timerVal <= 0) {
+        if (timerVal <= 0 || qCount === qQuestions.length) {
             clearInterval(timer);
+            clearTimeout(timer);
             showQuizEnd(true);
+            
+            // return score;
         }
+        
     }, 1000)
     
 })
@@ -97,6 +105,64 @@ buttonsList.addEventListener("click", function (event) {
         AnswerChecker(userChoice.textContent);
     }
 });
+
+highScoreBtn.addEventListener("click", function() {
+    var highScores = JSON.parse(localStorage.getItem("HighScores"));
+    startScreen.classList.remove("firstScreen");
+    startScreen.classList.add("hidden");
+    timerContent.classList.add("hidden");
+    showFinalScore(highScores);
+});
+
+function inputFinalScore(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    proccessFinalScore(scoreForm.elements["name-field"].value, score)
+    console.log(scoreForm.elements["name-field"].value, score)
+}
+
+function proccessFinalScore(name, score) {
+    var scoreRecord = {
+        name: name,
+        score: score
+    }
+
+    var highScores = JSON.parse(localStorage.getItem("HighScores"));
+    if (highScores) {
+        highScores.push(scoreRecord);
+    } 
+    
+    else {
+        highScores = [];
+        highScores.push(scoreRecord);
+    }
+    localStorage.setItem("HighScores", JSON.stringify(highScores));
+    showFinalScore(highScores);
+}
+
+function showFinalScore(highScoresArray) {
+    var sortedScores = highScoresArray.sort((a, b) => b.score - a.score);
+    if (sortedScores.length > 4) {
+        sortedScores = sortedScores.splice(0, 4);
+    }
+    var scorelist = document.createElement("ul");
+    sortedScores.forEach(scoreRecord => {
+        var recordEl = document.createElement("li");
+        recordEl.textContent = scoreRecord.name + "  " + scoreRecord.score;
+        scorelist.appendChild(recordEl);
+    });
+    highScoScreen.append(scorelist)
+    questList.textContent = "TOP 4 GREATEST CHALLENGERS IN HISTORY"
+    questScreen.classList.add("hidden");
+    highScoScreen.classList.remove("hidden");
+    // timerContent.classList.add('hidden');
+    doneScreen.classList.add('hidden');
+    // displayedAnsw.classList.remove("hidden");
+    // scoreForm.classList.add('hidden');
+    // getStartedButton.classList.remove("hidden");
+    // getStartedButton.innerHTML = "Try Again!";
+}
+
 
 function shuffleOrder (order) {
     var count = order.length;
@@ -174,4 +240,6 @@ function showQuizEnd () {
     questScreen.classList.add("hidden");
     timerContent.classList.add('hidden');
     doneScreen.classList.remove('hidden');
+    score = timerVal;
+    timerScore.textContent = score;
 }

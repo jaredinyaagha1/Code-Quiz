@@ -12,12 +12,12 @@
     <nav class="navbar">
         <ul class="navItems">
             <li class="homePage"><a href="">HOME</a></li>
-            <li class="highscorePage"><a href="">VIEW HIGHSCORES</a></li>
+            <li class="highscorePage"><a href="#">VIEW HIGHSCORES</a></li>
         </ul>
         <div class="timer">
-                <h3 class="timer-text">
-                    Time: <div class="timer-count">60</div>s
-                </h3>
+            <h3 class="timer-text">
+                Time: <div class="timer-count">60</div>s
+            </h3>
         </div>
 
     </nav>
@@ -38,19 +38,19 @@
 
         <section class="questionScreen hidden">
             <h1 class="questions"></h1>
-            <ul class= "buttons">
-                <li><button id= "answers1" class="answers"></button></li>
-                <li><button id= "answers2" class="answers"></button></li>
-                <li><button id= "answers3" class="answers"></button></li>
-                <li><button id= "answers4" class="answers"></button></li>
+            <ul class="buttons">
+                <li><button id="answers1" class="answers"></button></li>
+                <li><button id="answers2" class="answers"></button></li>
+                <li><button id="answers3" class="answers"></button></li>
+                <li><button id="answers4" class="answers"></button></li>
             </ul>
-            
+
         </section>
 
         <section class="correctWrong hidden">
             <h4 class="Correct hidden">
                 _______________________________________________
-                
+
                 Correct!
             </h4>
             <h4 class="Wrong hidden">
@@ -59,33 +59,30 @@
                 Wrong!
             </h4>
         </section>
-        
+
         <section class="doneScreen hidden">
             <h1>All done!</h1>
-            <h3>Your final score is<div class="timer-count"></div>
+            <h3>Your final score is<div class="timerscore"></div>
             </h3>
-            <form id="finalScore" onsubmit="inputFinalScore(event)">
-                <label for="finalscore">SUBMIT CHALLENGER INITIALS: <input type="text" id="finalscore" 
-                    class="" name="finalscore" placeholder="Insert Name Here"></label>
-                <input class="submit-button" type="submit" />
+            <form id="submit-score" class="finalScore" onsubmit="inputFinalScore(event)">
+                <label>SUBMIT CHALLENGER INITIALS: <input id="name-field" type="text" class="name-input"
+                        name="finalScoreName" placeholder="Insert Name Here"/></label>
+                <input class="form-submit" type="submit" />
             </form>
-            <!-- <button id="submit-button" class="">SUBMIT CHALLENGE</button> -->
+            
         </section>
 
-        
+        <section class="highScoreScreen hidden">
+            <h1>TOP 4 GREATEST CHALLENGERS IN HISTORY</h1>
 
-        <!-- <section class="highScoreScreen, hide">
-            <h1>High Scores</h1>
+        </section>
 
-            <ul class="highScoreList" id="highScoreList">
-                <li>
-                    
-                </li>
-            </ul>
-        </section> -->
+
+
     </main>
 
-    
+
+
     <script src="script2.js"></script>
 </body>
 
